@@ -5,7 +5,14 @@ const destinationSchema = new mongoose.Schema(
     name: { type: String, required: true, trim: true },
     price: { type: Number, required: true, trim: true },
     images: { type: [String], required: false, trim: true },
-    // tours: { type: [String], required: false, trim: false },
+    tours: [
+      {
+        type: mongoose.Types.ObjectId,
+        required: true,
+        trim: true,
+        ref: "Tour",
+      },
+    ],
   },
   {
     timestamps: true,
