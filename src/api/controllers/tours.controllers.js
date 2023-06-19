@@ -20,47 +20,47 @@ const createTour = async (req, res, next) => {
   }
 };
 
-const getRouteById = async (req, res, next) => {
+const getTourById = async (req, res, next) => {
   try {
-    const route = await Route.findById(req.params.id);
-    return res.status(200).json(route);
+    const tour = await Tour.findById(req.params.id);
+    return res.status(200).json(tour);
   } catch (error) {
-    return next("Route not found 👺", error);
+    return next("Tour not found 👺", error);
   }
 };
 
-const updateRoute = async (req, res, next) => {
+const updateTour = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const newRoute = new Route(req.body);
+    const newTour = new Tour(req.body);
 
-    newRoute._id = id;
+    newTour._id = id;
 
-    const updatedRoute = await Route.findByIdAndUpdate(id, newRoute, {
+    const updatedTour = await Tour.findByIdAndUpdate(id, newTour, {
       new: true,
     });
-    return res.status(200).json(updatedRoute);
+    return res.status(200).json(updatedTour);
   } catch (error) {
-    return next("Error updating Route 👺", error);
+    return next("Error updating Tour 👺", error);
   }
 };
 
-const deleteRoute = async (req, res, next) => {
+const deleteTour = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const deletedRoute = await Route.findByIdAndDelete(id);
+    const deletedTour = await Tour.findByIdAndDelete(id);
 
-    return res.status(200).json("Route deleted successfully");
+    return res.status(200).json("Tour deleted successfully");
   } catch (error) {
-    return next("Route not found 👺", error);
+    return next("Tour not found 👺", error);
   }
 };
 
 module.exports = {
   getAllTours,
   createTour,
-  getRouteById,
-  updateRoute,
-  deleteRoute,
+  getTourById,
+  updateTour,
+  deleteTour,
 };
