@@ -2,7 +2,7 @@ const Destination = require("../models/destinations.model");
 
 const getAllDestinations = async (req, res, next) => {
   try {
-    const destinations = await Destination.find();
+    const destinations = await Destination.find().populate("tours");
     return res.status(200).json(destinations);
   } catch (error) {
     return next("Destinations were not found 👺", error);
